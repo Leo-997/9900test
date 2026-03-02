@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compileOnSave": false,
+  "files": ["eslint.config.mts"],
+  "include": ["eslint/**/*.*ts"],
+  "references": [],
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+  }
+}

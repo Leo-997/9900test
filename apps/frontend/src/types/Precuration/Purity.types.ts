@@ -1,0 +1,20 @@
+export interface IPurity {
+  purityId: number;
+  analysisSetId: string;
+  purity: number;
+  minPurity: number;
+  maxPurity: number;
+  ploidy: number;
+  minPloidy: number;
+  maxPloidy: number;
+  msStatus: string;
+  wgDuplication: boolean;
+  createdAt: string;
+  updatedAt: string;
+  createdBy: string;
+  updatedBy: string;
+}
+
+export interface IPurityFilters {
+  analysisSetId?: string;
+}

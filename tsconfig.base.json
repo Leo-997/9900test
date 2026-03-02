@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "skipLibCheck": true,
+    "lib": ["es2022"],
+    "target": "es2022",
+    "importHelpers": true,
+    "declarationMap": true,
+    "noEmitOnError": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "removeComments": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "customConditions": ["@zero-dash/source"],
+    "tsBuildInfoFile": "./tscache/tsconfig.tsbuildinfo"
+  }
+}

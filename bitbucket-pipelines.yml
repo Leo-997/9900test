@@ -1,0 +1,129 @@
+image:
+  name: containerregistrycb.azurecr.io/golden-images:node-build-latest
+  username: $AZURE_ACR_TOKEN_NAME
+  password: $AZURE_ACR_TOKEN_PWD
+
+definitions:
+  services:
+    docker-with-more-memory:
+      memory: 16384 # 16 GB
+      type: docker
+  
+  steps:
+    - step: &set-envs
+        name: Set Envs
+        runs-on:
+          - linux
+          - "self.hosted"
+        script:
+          - '[[ $BITBUCKET_TAG ]] && IMAGE_TAG=${BITBUCKET_TAG} || IMAGE_TAG=${BITBUCKET_BRANCH}_$(date +%Y-%m-%d)_${BITBUCKET_BUILD_NUMBER}'
+          - echo "export IMAGE_TAG=${IMAGE_TAG}" >> set-envs.sh
+        artifacts:
+          - set-envs.sh
+
+    - step: &compute-affected
+        name: Compute affected projects
+        runs-on:
+          - self.hosted
+          - linux
+        script:
+          - npm ci
+          - npx nx show projects --affected --base=HEAD~1 --sep="," > affected.txt
+        artifacts:
+          - affected.txt
+
+    - step: &build-affected
+        runs-on:
+          - self.hosted
+          - linux
+        name: 'Build affected'
+        on-fail:
+          strategy: ignore
+        script:
+          - source set-envs.sh
+          - export NX_BRANCH="${BITBUCKET_BRANCH:-$(git branch --show-current)}"
+          - npm i --workspaces=false
+          - npx nx run-many -t docker-build --outputStyle stream --projects="$(cat affected.txt)"
+        size: 8x
+        services:
+          - docker-with-more-memory
+
+    - step: &migrate-affected
+        runs-on:
+          - self.hosted
+          - linux
+        name: 'Run migrations affected'
+        on-fail:
+          strategy: ignore
+        script:
+          - source set-envs.sh
+          - export NX_BRANCH="${BITBUCKET_BRANCH:-$(git branch --show-current)}"
+          - npm i --workspaces=false
+          - npx nx run-many -t run-migrations --projects="$(cat affected.txt)"
+        size: 8x
+        services:
+          - docker-with-more-memory
+
+    - step: &deploy-affected
+        runs-on:
+          - self.hosted
+          - linux
+        name: 'Deploy affected'
+        script:
+          - source set-envs.sh
+          - export NX_BRANCH="${BITBUCKET_BRANCH:-$(git branch --show-current)}"
+          - npm i --workspaces=false
+          - npx nx run-many -t deploy --outputStyle stream --projects="$(cat affected.txt)"
+        size: 8x
+        services:
+          - docker-with-more-memory
+
+pipelines:
+  branches:
+    development:
+      - step:
+          environment: development
+          <<: *set-envs
+      - step:
+          environment: development
+          <<: *compute-affected
+      - step:
+          environment: development
+          <<: *build-affected
+      - step:
+          environment: development
+          <<: *migrate-affected
+      - step:
+          deployment: development
+          <<: *deploy-affected
+    staging:
+      - step:
+          environment: staging
+          <<: *set-envs
+      - step:
+          environment: staging
+          <<: *compute-affected
+      - step:
+          environment: staging
+          <<: *build-affected
+      - step:
+          environment: staging
+          <<: *migrate-affected
+      - step:
+          deployment: staging
+          <<: *deploy-affected
+  tags:
+    v*.*.*:
+      - step:
+          environment: production
+          <<: *set-envs
+      - step:
+          environment: production
+          <<: *compute-affected
+      - step:
+          environment: production
+          <<: *build-affected
+      - step:
+          deployment: production
+          trigger: manual
+          <<: *deploy-affected
