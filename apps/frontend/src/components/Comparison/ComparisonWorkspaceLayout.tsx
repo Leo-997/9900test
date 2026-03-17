@@ -15,8 +15,8 @@ const useStyles = makeStyles(() => ({
     boxSizing: 'border-box',
   },
   sidebar: {
-    width: '360px',
-    minWidth: '360px',
+    width: '420px',
+    minWidth: '420px',
     height: '100%',
     backgroundColor: corePalette.white,
     borderRadius: '16px',

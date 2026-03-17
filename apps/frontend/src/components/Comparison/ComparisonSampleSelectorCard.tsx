@@ -92,7 +92,7 @@ export default function ComparisonSampleSelectorCard({
 
   return (
     <Box className={classes.root}>
-      <Box>
+      <Box display="flex" flexDirection="column" gap="4px">
         <CustomTypography
           variant="label"
           color={corePalette.grey100}
