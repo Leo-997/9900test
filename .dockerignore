@@ -1,5 +1,8 @@
 node_modules
+**/node_modules
+.npm
+.nx/cache
+tscache
 dist
-.nx
-.cache
 .git
+dump.sql
