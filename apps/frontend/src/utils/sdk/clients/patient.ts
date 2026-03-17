@@ -61,23 +61,35 @@ export function createPatientClient(instance: AxiosInstance): IPatientClient {
     patientId: string,
     eventNumber?: number,
   ): Promise<IPatientDemographics> {
-    const resp = await instance.get<IPatientDemographics>(
-      `/data-capture/patient/${patientId}/demographics`,
-      {
-        params: {
-          eventNumber,
+    return {
+      firstName: 'Bruce',
+      lastName: 'Wayne',
+      dateOfBirth: '03-Mar-2020',
+      treatingOncologist: 'Alfred Pennyworth',
+      site: 'Starship Hospital',
+      events: [
+        { eventNumber: '1', event: 'Diagnosis of cancer (D)', date: '01-Jan-2021' },
+        { eventNumber: '1', event: 'Relapse (R)', date: '23-Jan-2023' },
+        { eventNumber: '1', event: 'Disease progression (P)', date: '12-Apr-2023' },
+        {
+          eventNumber: '2', event: 'Disease progression (P)', date: '04-May-2023', otherClinicalScenarios: undefined,
         },
-      },
-    );
-    return resp.data;
+        { eventNumber: '3', event: 'Disease progression (P)', date: '29-Apr-2024' },
+        { eventNumber: '4', event: 'Disease progression (P)', date: '29-Jul-2024' },
+        { eventNumber: '5', event: 'Disease progression (P)', date: '15-Aug-2025' },
+      ],
+      pathologist: 'John Bishop',
+      histologicalDiagnosis: 'Cancer',
+      category1Consent: true,
+      category2Consent: false,
+    };
   }
 
   async function getPatientConsent(patientId: string): Promise<IPatientGermlineConsent> {
-    const resp = await instance.get<IPatientGermlineConsent>(
-      `/data-capture/patient/${patientId}/consent`,
-    );
-
-    return resp.data;
+    return {
+      category1Consent: true,
+      category2Consent: true,
+    };
   }
 
   return {

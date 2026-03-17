@@ -11,6 +11,10 @@ const TumourProfileTabContent = loadable(
   () => import('@/components/CurationValidationTabs/TumourProfileTabContent'),
   { fallback: <LoadingPage /> },
 );
+const ComparisonTabContent = loadable(
+  () => import('@/components/PreCurationTabs/ComparisonTabContent'),
+  { fallback: <LoadingPage /> },
+);
 const ClassifiersTabContent = loadable(
   () => import('@/components/PreCurationTabs/ClassifiersTabContent'),
   { fallback: <LoadingPage /> },
@@ -83,6 +87,11 @@ export const curationTabs: TabProps[] = [
     label: 'Tumour Profile',
     to: 'tumour_profile',
     children: <TumourProfileTabContent />,
+  },
+  {
+    label: 'Comparison',
+    to: 'comparison',
+    children: <ComparisonTabContent />,
   },
   {
     label: 'SNVs',

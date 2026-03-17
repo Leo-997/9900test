@@ -95,6 +95,7 @@ export default function DashboardLayout(): JSX.Element {
   const splitPathname = pathname.split('/')[1];
   let page = splitPathname === 'dashboard' ? '' : splitPathname;
   page = page || (canAccessAllStages ? 'overview' : 'curation');
+  const isUntabbedPage = ['meeting', 'comparison'].includes(page);
 
   if (
     (page === 'overview' && !canReadReports)
@@ -127,7 +128,7 @@ export default function DashboardLayout(): JSX.Element {
               <ScrollableSection style={{ minWidth: '200px', width: '100%' }}>
                 <Grid container wrap="nowrap">
                   <CustomTabs
-                    value={page === 'meeting' ? false : page}
+                    value={isUntabbedPage ? false : page}
                     variant="navigation"
                     size="xlarge"
                     mode="dark"

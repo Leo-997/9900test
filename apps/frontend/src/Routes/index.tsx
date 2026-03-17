@@ -26,6 +26,10 @@ const ReportsPage = loadable(() => import('@/pages/Reports/ReportsPage'), {
 const Dashboard = loadable(() => import('@/pages/Dashboard/Dashboard'), {
   fallback: <LoadingPage />,
 });
+const ComparisonWorkspacePage = loadable(
+  () => import('@/pages/Comparison/ComparisonWorkspacePage'),
+  { fallback: <LoadingPage /> },
+);
 const PanelListView = loadable(() => import('@/pages/Atlas/PanelListView'), {
   fallback: <LoadingPage />,
 });
@@ -74,6 +78,10 @@ export function Routes(): JSX.Element {
                 element={(<PanelListView />)}
               />
             </Route>
+            <Route
+              path="/comparison"
+              element={<ComparisonWorkspacePage />}
+            />
           </Route>
           <Route path=":patientId" element={<PatientProvider />}>
             <Route path=":analysisSetId" element={<AnalysisSetProvider />}>
