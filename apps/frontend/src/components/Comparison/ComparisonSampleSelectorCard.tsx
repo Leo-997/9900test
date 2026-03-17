@@ -97,13 +97,14 @@ export default function ComparisonSampleSelectorCard({
           variant="label"
           color={corePalette.grey100}
           className={classes.label}
+          component="div"
         >
           {label}
         </CustomTypography>
-        <CustomTypography variant="titleRegular" fontWeight="medium">
+        <CustomTypography variant="titleSmall" fontWeight="medium" component="div">
           {title}
         </CustomTypography>
-        <CustomTypography variant="bodyRegular" color={corePalette.grey200}>
+        <CustomTypography variant="bodyRegular" color={corePalette.grey200} component="div">
           {description}
         </CustomTypography>
       </Box>

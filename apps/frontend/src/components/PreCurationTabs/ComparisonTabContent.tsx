@@ -27,12 +27,12 @@ export default function ComparisonTabContent(): JSX.Element {
 
   const { selectPrimarySample, primarySample } = workspaceState;
 
-  const lastAutoSelectedId = useRef<string | null>(null);
+  const hasAutoSelected = useRef<boolean>(false);
 
   useEffect(() => {
-    if (analysisSet?.analysisSetId && lastAutoSelectedId.current !== analysisSet.analysisSetId) {
+    if (analysisSet?.analysisSetId && !hasAutoSelected.current) {
       selectPrimarySample(analysisSet);
-      lastAutoSelectedId.current = analysisSet.analysisSetId;
+      hasAutoSelected.current = true;
     }
   }, [analysisSet, selectPrimarySample]);
 
