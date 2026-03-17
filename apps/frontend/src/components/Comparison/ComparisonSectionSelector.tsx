@@ -52,24 +52,11 @@ export default function ComparisonSectionSelector({
 
   return (
     <Box className={classes.root}>
-<<<<<<< HEAD
-      <Box>
-=======
       <Box display="flex" flexDirection="column" gap="4px">
->>>>>>> 47b09ca4499b1737605d61ec3c997f5bf16240d2
         <CustomTypography
           variant="label"
           color={corePalette.grey100}
           className={classes.label}
-<<<<<<< HEAD
-        >
-          SECTIONS
-        </CustomTypography>
-        <CustomTypography variant="titleRegular" fontWeight="medium">
-          Choose comparison sections
-        </CustomTypography>
-        <CustomTypography variant="bodyRegular" color={corePalette.grey200}>
-=======
           component="div"
         >
           SECTIONS
@@ -78,7 +65,6 @@ export default function ComparisonSectionSelector({
           Choose comparison sections
         </CustomTypography>
         <CustomTypography variant="bodyRegular" color={corePalette.grey200} component="div">
->>>>>>> 47b09ca4499b1737605d61ec3c997f5bf16240d2
           Select the sections you want to show in the comparison workspace.
         </CustomTypography>
       </Box>

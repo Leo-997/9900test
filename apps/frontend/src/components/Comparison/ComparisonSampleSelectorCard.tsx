@@ -92,24 +92,11 @@ export default function ComparisonSampleSelectorCard({
 
   return (
     <Box className={classes.root}>
-<<<<<<< HEAD
-      <Box>
-=======
       <Box display="flex" flexDirection="column" gap="4px">
->>>>>>> 47b09ca4499b1737605d61ec3c997f5bf16240d2
         <CustomTypography
           variant="label"
           color={corePalette.grey100}
           className={classes.label}
-<<<<<<< HEAD
-        >
-          {label}
-        </CustomTypography>
-        <CustomTypography variant="titleRegular" fontWeight="medium">
-          {title}
-        </CustomTypography>
-        <CustomTypography variant="bodyRegular" color={corePalette.grey200}>
-=======
           component="div"
         >
           {label}
@@ -118,7 +105,6 @@ export default function ComparisonSampleSelectorCard({
           {title}
         </CustomTypography>
         <CustomTypography variant="bodyRegular" color={corePalette.grey200} component="div">
->>>>>>> 47b09ca4499b1737605d61ec3c997f5bf16240d2
           {description}
         </CustomTypography>
       </Box>

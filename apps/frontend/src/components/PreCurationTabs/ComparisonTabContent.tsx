@@ -1,10 +1,6 @@
 import { Box, type JSX } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-<<<<<<< HEAD
-import { useEffect } from 'react';
-=======
 import { useEffect, useRef } from 'react';
->>>>>>> 47b09ca4499b1737605d61ec3c997f5bf16240d2
 import { useAnalysisSet } from '@/contexts/AnalysisSetContext';
 import { corePalette } from '@/themes/colours';
 import { useComparisonWorkspaceState } from '@/hooks/Comparison/useComparisonWorkspaceState';
@@ -31,13 +27,6 @@ export default function ComparisonTabContent(): JSX.Element {
 
   const { selectPrimarySample, primarySample } = workspaceState;
 
-<<<<<<< HEAD
-  useEffect(() => {
-    if (analysisSet.analysisSetId && (!primarySample || primarySample.analysisSetId !== analysisSet.analysisSetId)) {
-      selectPrimarySample(analysisSet);
-    }
-  }, [analysisSet, primarySample, selectPrimarySample]);
-=======
   const hasAutoSelected = useRef<boolean>(false);
 
   useEffect(() => {
@@ -46,7 +35,6 @@ export default function ComparisonTabContent(): JSX.Element {
       hasAutoSelected.current = true;
     }
   }, [analysisSet, selectPrimarySample]);
->>>>>>> 47b09ca4499b1737605d61ec3c997f5bf16240d2
 
   return (
     <Box className={classes.root}>
