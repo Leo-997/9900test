@@ -1,0 +1,5 @@
+export const NOTIFICATION_TIMEOUT = 250000;
+
+export const COMMENT_LENGTH_LIMIT = 3000;
+
+export const FLAG_CORRECTIONS_LIMIT = 500;

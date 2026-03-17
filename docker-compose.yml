@@ -1,0 +1,36 @@
+services:
+  db:
+    image: mysql:8.0
+    command: --innodb_redo_log_capacity=1073741824
+    environment:
+      MYSQL_ROOT_PASSWORD: 199900  # 💡 已修复：必须与 .env 严格一致
+      MYSQL_DATABASE: zcczerodashhg38
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql:ro
+      - mysql_data:/var/lib/mysql
+
+  app:
+    build: .
+    ports:
+      - "3000:3000" # Vite
+      - "3001:3001" # API
+      - "3002:3002" # Clinical
+      - "3003:3003" # Capture
+      - "3004:3004" # Evidence
+      - "3006:3006" # Reports
+    env_file:
+      - .env        # 💡 关键：将 .env 注入到容器中以加载所有配置
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=db  # 覆盖 .env 中的 localhoost 错误
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.nx
+
+volumes:
+  mysql_data:

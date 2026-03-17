@@ -1,0 +1,105 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Approval {
+  id: ID!
+  reportId: String!
+  status: String!
+  groupId: String
+  label: String
+  showOnReport: Boolean
+  assigneeId: String
+  approvedBy: String
+  approvedAt: String
+  createdAt: String!
+  createdBy: String!
+  updatedAt: String
+  updatedBy: String
+  notifiedAt: String
+}
+
+type Report {
+  id: ID!
+  analysisSetId: String!
+  type: String!
+  status: String!
+  pseudoStatus: String
+  approvedAt: String
+  fileId: String
+  approvals: [Approval!]
+  metadata: JSONObject
+  createdAt: String!
+  createdBy: String!
+  updatedAt: String
+  updatedBy: String
+}
+
+"""
+The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSONObject
+
+type Query {
+  approval(id: String!): Approval!
+  approvals(id: String, reportId: String, status: String, groupId: String, label: String, showOnReport: Boolean, assigneeId: String, approvedBy: String, approvedAt: String): [Approval!]!
+  report(id: String!): Report!
+  reports(page: Int, limit: Int, analysisSetIds: [String!], types: [String!], statuses: [String!], pseudoStatuses: [String!], fileId: String, approvers: [String!], sortColumns: [String!], sortDirections: [String!]): [Report!]!
+}
+
+type Mutation {
+  createApprovals(createApprovalsBody: CreateApprovalsBodyDTO!): Void
+  updateApproval(id: String!, updateApprovalBody: UpdateApprovalDTO!): Float!
+  createReport(createReportBody: CreateReportsBodyDTO!): String!
+  updateReport(id: String!, updateReportBody: UpdateReportsBodyDTO!): Void
+  updateReportMetadata(id: String!, updateReportMetadataBody: UpdateReportMetadataDTO!): Void
+}
+
+"""Represents NULL values"""
+scalar Void
+
+input CreateApprovalsBodyDTO {
+  reportId: String!
+  approvals: [CreateApprovalDTO!]!
+}
+
+input CreateApprovalDTO {
+  status: String!
+  groupId: String
+  label: String
+  showOnReport: Boolean
+  assigneeId: String
+  approvedBy: String
+  approvedAt: String
+}
+
+input UpdateApprovalDTO {
+  patientId: String
+  status: String
+  showOnReport: Boolean
+  assigneeId: String
+  notifiedAt: String
+  sendNotifications: Boolean
+}
+
+input CreateReportsBodyDTO {
+  analysisSetId: String!
+  type: String!
+  status: String!
+  fileId: String
+}
+
+input UpdateReportsBodyDTO {
+  status: String
+  pseudoStatus: String
+  fileId: String
+}
+
+input UpdateReportMetadataDTO {
+  metadata: [UpdateReportMetadataKey!]!
+}
+
+input UpdateReportMetadataKey {
+  key: String!
+  value: String!
+}

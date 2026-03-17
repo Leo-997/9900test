@@ -1,0 +1,116 @@
+/* eslint-disable max-len */
+export const expressionViewerConfig = {
+  backgroundType: 'panel',
+  // [Plot area] bins the data points in the dotplot
+  binned: true,
+  citationAlign: 'panel::1',
+  // [Data Point Attributes] coloured dots are based on what is in data.graph.x.legend
+  colorBy: ['legend'],
+  colorDataTable: false,
+  // [Colors] black, red, yellow, blue, green dots from cohort, main_sample, matching_sample, catgeory and subcategory respectively
+  // [Data Table] width of column cells in the table
+  colWidth: 130,
+  customizerSize: 'xxsmall',
+  dataFilterWidth: 260,
+  dataPointSizeScaleFactor: 1.5,
+  // [Data Table] hides data.graph.x.gene and .legend in the table
+  dataTableColHide: ['gene', 'legend'],
+  // [Data Table] order that non variables and samples appear in the table. TPMS appears at the end since it is a variable.
+  // rnaSeqId cannot be switched with patientId since it is a sample.
+  dataTableColOrder: ['patientId', 'category', 'subcat2'],
+  dataTableStripeShow: false,
+  // [Data Table] title of the first column in the table
+  dataTableZeroHeader: 'rnaSeqId',
+  // [Data UI Widgets] enables the addition of green widgets
+  // [Decorations] addition of the red line that appears at the exact value of the main_sample selected
+  errorBarsColor: '#FF2969',
+  errorBarsType: 'standardDeviation',
+  // [Data Filters] allows dots to be transparent when filtering via the legend
+  filterMode: 'color',
+  graphOrientation: 'vertical',
+  graphType: 'Dotplot',
+  groupingFactors: ['gene'],
+  histogramBins: '150',
+  layoutSpacing: 2,
+  legendBackgroundBorderColor: '#DEDEDE',
+  legendInside: true,
+  legendKeyBackgroundBorderColor: '#FFFFFF',
+  legendKeyBackgroundColor: '#FFFFFF',
+  // [Legends] order of what appears in the legend: cohort, rnaSeqId of selected sample, patientId of selected sample if there is a matching sample, category chosen, subcategory chosen
+  legendTextMargin: '0.5',
+  legendTextScaleFontFactor: 0.8,
+  showLegendTitle: false,
+  legendTitleScaleFontFactor: 1.1,
+  marginBottom: 30,
+  marginTop: 0.5,
+  // [Missing Data] transparent color for missing data when filtering via the legend
+  panelBackgroundBorderColor: '#00000000',
+  panelBackgroundColor: '#FFFFFF',
+  plotBackgroundBorderColor: '#FFFFFF',
+  rAxisGridMajorColor: '#DEDEDE',
+  rAxisGridMajorLineType: 'line',
+  rAxisGridMinorColor: '#DEDEDE',
+  rAxisGridMinorLineType: 'line',
+  rAxisGridMinorShow: false,
+  rAxisGridMinorWidth: 0.25,
+  rAxisTextColor: '#4D4D4D',
+  rAxisTicksColor: '#B3B3B3',
+  rAxisTicksLength: 4.125,
+  // [Data Table] height of cells in table
+  rowHeight: 20,
+  // [Print] name of the file that gets saved when the camera icon is clicked - selected geneId and patient from main_sample
+  showSampleNames: false,
+  smpTextRotate: 90,
+  smpTextScaleFontFactor: 32,
+  // [Samples] title of the "x-axis" set to the selected geneId
+  smpTitleScaleFontFactor: 1.5,
+  stripBackgroundBorderColor: 'rgba(255,255,255,0)',
+  stripBackgroundColor: '#B3B3B3',
+  stripTextColor: '#FFFFFF',
+  subtitleAlign: 'plot::0',
+  subtitleScaleFontFactor: 1,
+  summaryType: 'mean',
+  // [Titles and Subtitles] title of the entire graph
+  titleAlign: 'center',
+  titleFontStyle: '',
+  titleScaleFontFactor: 1.5,
+  toolbarType: 'over',
+  // [Data UI Widgets] sets different componenets of the UI to green
+
+  widgetsBaseColor: '#1E86FC',
+  widgetsBorderColor: '#1E86FC',
+  widgetsContrastColor: '#FFFFFF',
+  widgetsFontColor: '#000000',
+  widthFactor: 0.75,
+  xAxis: ['TPMS'],
+  xAxisGridMajorColor: '#FFFFFF',
+  xAxisGridMajorLineType: 'line',
+  xAxisGridMinorColor: '#DEDEDE',
+  xAxisGridMinorLineType: 'line',
+  xAxisGridMinorShow: true,
+  xAxisGridMinorWidth: 0.25,
+  xAxisTextColor: '#4D4D4D',
+  xAxisTextScaleFontFactor: 1.5,
+  xAxisTicksColor: '#B3B3B3',
+  xAxisTicksLength: 4.125,
+  xAxisTitle: 'TPM',
+  xAxisTitleScaleFontFactor: 1.5,
+  yAxisGridMajorColor: '#DEDEDE',
+  yAxisGridMajorLineType: 'line',
+  yAxisGridMinorColor: '#DEDEDE',
+  yAxisGridMinorLineType: 'line',
+  yAxisGridMinorWidth: 0.25,
+  yAxisTextColor: '#4D4D4D',
+  yAxisTicksColor: '#B3B3B3',
+  yAxisTicksLength: 4.125,
+  variableSpace: 1,
+  zAxisGridMajorColor: '#DEDEDE',
+  zAxisGridMajorLineType: 'line',
+  zAxisGridMinorColor: '#DEDEDE',
+  zAxisGridMinorLineType: 'line',
+  zAxisGridMinorShow: true,
+  zAxisGridMinorWidth: 0.25,
+  zAxisTextColor: '#4D4D4D',
+  zAxisTicksColor: '#B3B3B3',
+  zAxisTicksLength: 4.125,
+} as const;

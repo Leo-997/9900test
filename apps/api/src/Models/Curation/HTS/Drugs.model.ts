@@ -1,0 +1,59 @@
+export interface IDrug {
+  drugId: number;
+  drugName: string;
+  synonyms: string;
+  category: string;
+  company: string;
+  molWeight: number;
+  cciDrugId: string;
+  drugnameCci: string;
+  drugnamePmc: string;
+  drugnameCompasslib: string;
+  drugTarget: string;
+  drugPathwayclass: string;
+  drugType: string;
+  drugClass: string;
+  cci: boolean;
+  pmc: boolean;
+  prodrug: string;
+  combination: boolean;
+  comboType: string;
+  clinicalTrial: string;
+  comments: string;
+  createdAt: Date;
+  updatedAt: Date;
+  createdBy: string;
+  updatedBy: string;
+}
+
+export interface IDrugDetails {
+  internalId: number;
+  drugId: number;
+  drugName: string;
+  screen: string;
+  target?: string;
+  molWeight?: number;
+  dosePk: string;
+  doseSchedule: string;
+  dosePaediatric: string;
+  doseTolerance: string;
+  cmaxNgMl: number;
+  cmaxUM: number;
+  cssNgMl: number;
+  cssUM: number;
+  cssPeak: string;
+  maxResponse: string;
+  tumorType: string;
+  crpcUM: number;
+  crpcNM: number;
+  bbb: string;
+  fda: string;
+  tga: string;
+  paedCancerTrial: boolean;
+  includeReason: string;
+  comment: string;
+  createdAt: Date;
+  updatedAt: Date;
+  createdBy: string;
+  updatedBy: string;
+}
